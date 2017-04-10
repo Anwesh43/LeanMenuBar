@@ -7,10 +7,16 @@ import android.app.Activity;
  */
 public class MenuBarController {
     private Activity activity;
+    private MenuBar menuBar;
+    private LeanMenuContainer leanMenuContainer;
     private MenuBarController(Activity activity) {
         this.activity = activity;
+        init();
+    }
+    private void init() {
+
     }
     public void show() {
-        
+
     }
 }
