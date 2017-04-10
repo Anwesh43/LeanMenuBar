@@ -15,6 +15,10 @@ public class MenuBar extends View {
     private MenuButton menuButton;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int time = 0;
+    private OnMenuButtonClickListener onMenuButtonClickListener;
+    public void setOnMenuButtonClickListener(OnMenuButtonClickListener onMenuButtonClickListener) {
+        this.onMenuButtonClickListener = onMenuButtonClickListener;
+    }
     private boolean isAnimated = false;
     public void setColor(int color) {
         this.color = color;
@@ -33,7 +37,14 @@ public class MenuBar extends View {
             menuButton.update();
             if(menuButton.stop()) {
                 isAnimated = false;
-
+                if(onMenuButtonClickListener!=null) {
+                    if (menuButton.opened()) {
+                        onMenuButtonClickListener.onOpen();
+                    }
+                    else {
+                        onMenuButtonClickListener.onClose();
+                    }
+                }
             }
             try {
                 Thread.sleep(50);
@@ -49,5 +60,9 @@ public class MenuBar extends View {
             menuButton.handleTap(event.getX(),event.getY());
         }
         return true;
+    }
+    public interface OnMenuButtonClickListener {
+        void onOpen();
+        void onClose();
     }
 }

@@ -47,7 +47,17 @@ public class MenuBarController {
         activity.addContentView(menuBar, new ViewGroup.LayoutParams(w, h / 5));
         menuBar.setX(4 * w / 5);
         menuBar.setY(0);
+        menuBar.setOnMenuButtonClickListener(new MenuBar.OnMenuButtonClickListener() {
+            @Override
+            public void onOpen() {
+                leanMenuContainer.setVisibility(View.VISIBLE);
+            }
 
+            @Override
+            public void onClose() {
+                leanMenuContainer.setVisibility(View.INVISIBLE);
+            }
+        });
     }
     public void show() {
         if(!shown) {
