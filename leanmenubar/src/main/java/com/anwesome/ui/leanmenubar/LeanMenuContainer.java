@@ -21,6 +21,9 @@ public class LeanMenuContainer extends View{
     public LeanMenuContainer(Context context) {
         super(context);
     }
+    public void setLeanMenus(List<LeanMenu> leanMenus) {
+        this.leanMenuList = leanMenus;
+    }
     public void onDraw(Canvas canvas) {
         int w = canvas.getWidth(),h = canvas.getHeight();
         initMenus(w,h);
