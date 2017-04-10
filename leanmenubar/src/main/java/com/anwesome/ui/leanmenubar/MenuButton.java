@@ -45,4 +45,10 @@ public class MenuButton {
     public int hashCode() {
         return (int)(x+y+dir+deg);
     }
+    public boolean stop() {
+        return  dir == 0;
+    }
+    public boolean opened() {
+        return deg>=90;
+    }
 }
