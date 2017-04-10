@@ -61,4 +61,7 @@ public class LeanMenu {
     public interface MenuClickListener {
         void onMenuClick();
     }
+    public boolean stop() {
+        return dir == 0;
+    }
 }
