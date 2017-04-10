@@ -18,7 +18,7 @@ public class MenuButton {
         canvas.translate(x,y);
         canvas.rotate(deg);
         paint.setColor(Color.WHITE);
-        paint.setStrokeWidth(r/20);
+        paint.setStrokeWidth(r/12);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(0,0,r,paint);
         paint.setStyle(Paint.Style.FILL);
