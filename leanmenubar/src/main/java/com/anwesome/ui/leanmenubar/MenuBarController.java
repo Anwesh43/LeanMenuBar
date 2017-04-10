@@ -54,8 +54,8 @@ public class MenuBarController {
                 leanMenuContainer.setVisibility(View.INVISIBLE);
             }
         });
-        activity.addContentView(leanMenuContainer, new ViewGroup.LayoutParams(w / 3, w / 3 * leanMenus.size()));
-        leanMenuContainer.setX(4 * w / 5 - w / 10 - w / 3);
+        activity.addContentView(leanMenuContainer, new ViewGroup.LayoutParams(w / 3, Math.min(w,h)/12 * leanMenus.size()));
+        leanMenuContainer.setX(4 * w / 5  -w/30 - w / 3);
         leanMenuContainer.setY(h / 30);
         leanMenuContainer.setVisibility(View.INVISIBLE);
         leanMenuContainer.setElevation(20);

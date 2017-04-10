@@ -27,23 +27,23 @@ public class LeanMenu {
         canvas.drawRect(new RectF(-w/2,-h/2,w/2,h/2),paint);
         paint.setTextSize(h/2);
         paint.setColor(Color.BLACK);
-        canvas.drawText(option,w/2-paint.measureText(option)/2,h/2-paint.getTextSize()/2,paint);
+        canvas.drawText(option,-paint.measureText(option)/2,paint.getTextSize()/2,paint);
         canvas.save();
         canvas.scale(scale,scale);
-        paint.setColor(Color.parseColor("#99424242"));
+        paint.setColor(Color.parseColor("#44424242"));
         canvas.drawRect(new RectF(-w/2,-h/2,w/2,h/2),paint);
         canvas.restore();
         canvas.restore();
     }
     public boolean handleTap(float x,float y) {
-        boolean condition  = x>=this.x-w/2 && x<=this.x+w/2 && y>=this.y-h/2 && y<=this.y+h/2 && dir == 0;
+        boolean condition  = x>=this.x && x<=this.x+w && y>=this.y && y<=this.y+h && dir == 0;
         if(condition) {
             dir = 1;
         }
         return condition;
     }
     public void update() {
-        scale+=dir*0.1f;
+        scale+=dir*0.2f;
         if(scale>=1) {
             dir = -1;
         }
