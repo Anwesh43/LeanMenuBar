@@ -29,8 +29,9 @@ public class MenuBar extends View {
     public void onDraw(Canvas canvas) {
         if(time == 0) {
             int w = canvas.getWidth(), h = canvas.getHeight();
-            menuButton = new MenuButton(w/2,h/2,w/10);
+            menuButton = new MenuButton(4*w/5,h/2,Math.max(w,h)/25);
         }
+        canvas.drawColor(color);
         menuButton.draw(canvas,paint);
         time++;
         if(isAnimated) {
@@ -57,7 +58,10 @@ public class MenuBar extends View {
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && !isAnimated) {
-            menuButton.handleTap(event.getX(),event.getY());
+            if(menuButton.handleTap(event.getX(),event.getY())) {
+                isAnimated = true;
+                postInvalidate();
+            }
         }
         return true;
     }

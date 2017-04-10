@@ -21,11 +21,11 @@ public class LeanMenu {
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
-        canvas.translate(x,y);
+        canvas.translate(x+w/2,y+h/2);
         paint.setColor(Color.parseColor("#E0E0E0"));
         paint.setStyle(Paint.Style.FILL);
         canvas.drawRect(new RectF(-w/2,-h/2,w/2,h/2),paint);
-        paint.setTextSize(w/2);
+        paint.setTextSize(h/2);
         paint.setColor(Color.BLACK);
         canvas.drawText(option,w/2-paint.measureText(option)/2,h/2-paint.getTextSize()/2,paint);
         canvas.save();
@@ -36,7 +36,7 @@ public class LeanMenu {
         canvas.restore();
     }
     public boolean handleTap(float x,float y) {
-        boolean condition  = x>=this.x && x<=this.x+w && y>=this.y && y<=this.y+h && dir == 0;
+        boolean condition  = x>=this.x-w/2 && x<=this.x+w/2 && y>=this.y-h/2 && y<=this.y+h/2 && dir == 0;
         if(condition) {
             dir = 1;
         }

@@ -35,8 +35,8 @@ public class LeanMenuContainer extends View{
         if(time == 0) {
             int y = 0;
             for(LeanMenu leanMenu:leanMenuList) {
-                leanMenu.setDimension(0,y,w/3,w/3);
-                y+=w/3;
+                leanMenu.setDimension(0,y,w,h/(leanMenuList.size()));
+                y+=(h/leanMenuList.size());
             }
         }
     }
@@ -50,6 +50,7 @@ public class LeanMenuContainer extends View{
             selectedMenu.update();
             if(selectedMenu.stop()) {
                 isAnimated = false;
+                selectedMenu = null;
             }
             try {
                 Thread.sleep(50);
@@ -69,8 +70,10 @@ public class LeanMenuContainer extends View{
                     break;
                 }
             }
-            isAnimated = true;
-            postInvalidate();
+            if(selectedMenu!=null) {
+                isAnimated = true;
+                postInvalidate();
+            }
         }
         return true;
     }

@@ -6,33 +6,39 @@ import android.graphics.*;
  * Created by anweshmishra on 10/04/17.
  */
 public class MenuButton {
-    private float x,y,r,newR,deg = 0,dir = 0;
+    private float x,y,r,gap,deg = 0,dir = 0;
     public MenuButton(float x,float y,float r) {
         this.x = x;
         this.y = y;
         this.r = r;
-        this.newR = r/7;
+        this.gap = r/7;
     }
     public void draw(Canvas canvas, Paint paint) {
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
         paint.setColor(Color.WHITE);
-        paint.setStrokeWidth(r/40);
+        paint.setStrokeWidth(r/20);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(0,0,r,paint);
         paint.setStyle(Paint.Style.FILL);
-        float newx = -r/2+3*newR/2;
+        float newx = -r/2+3*gap/2;
         for(int i=0;i<3;i++) {
-            canvas.drawCircle(newx,0,newR,paint);
-            newx+=2*r;
+            canvas.drawCircle(newx,0,gap/2,paint);
+            newx+=2*gap;
         }
         canvas.restore();
     }
     public void update() {
-        deg+=dir;
+        deg+=dir*18;
         if(deg>=90 || deg<=0) {
             dir = 0;
+            if(deg>=90) {
+                deg = 90;
+            }
+            if(deg<=0) {
+                deg = 0;
+            }
         }
     }
     public boolean handleTap(float x,float y) {

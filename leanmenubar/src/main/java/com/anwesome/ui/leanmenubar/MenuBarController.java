@@ -19,7 +19,7 @@ public class MenuBarController {
     private LeanMenuContainer leanMenuContainer;
     private boolean shown = false;
     private List<LeanMenu> leanMenus = new ArrayList<>();
-    private MenuBarController(Activity activity) {
+    public MenuBarController(Activity activity) {
         this.activity = activity;
     }
     public void addLeanMenu(LeanMenu leanMenu) {
@@ -40,12 +40,8 @@ public class MenuBarController {
             android.app.ActionBar actionBar = activity.getActionBar();
             actionBar.hide();
         }
-        activity.addContentView(leanMenuContainer, new ViewGroup.LayoutParams(w / 3, w / 3 * leanMenus.size()));
-        leanMenuContainer.setX(4 * w / 5 - w / 10 - w / 3);
-        leanMenuContainer.setY(h / 30);
-        leanMenuContainer.setVisibility(View.INVISIBLE);
-        activity.addContentView(menuBar, new ViewGroup.LayoutParams(w, h / 5));
-        menuBar.setX(4 * w / 5);
+        activity.addContentView(menuBar, new ViewGroup.LayoutParams(w, Math.max(w,h) / 10));
+        menuBar.setX(0);
         menuBar.setY(0);
         menuBar.setOnMenuButtonClickListener(new MenuBar.OnMenuButtonClickListener() {
             @Override
@@ -58,6 +54,11 @@ public class MenuBarController {
                 leanMenuContainer.setVisibility(View.INVISIBLE);
             }
         });
+        activity.addContentView(leanMenuContainer, new ViewGroup.LayoutParams(w / 3, w / 3 * leanMenus.size()));
+        leanMenuContainer.setX(4 * w / 5 - w / 10 - w / 3);
+        leanMenuContainer.setY(h / 30);
+        leanMenuContainer.setVisibility(View.INVISIBLE);
+        leanMenuContainer.setElevation(20);
     }
     public void show() {
         if(!shown) {
